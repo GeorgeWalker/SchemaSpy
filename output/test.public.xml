@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="test" schema="public" type="PostgreSQL - 9.4.10">
+   <tables>
+      <table name="__EFMigrationsHistory" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="MigrationId" nullable="false" remarks="" size="150" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="ProductVersion" nullable="false" remarks="" size="32" type="varchar"/>
+         <primaryKey column="MigrationId" sequenceNumberInPK="1"/>
+         <index name="PK___EFMigrationsHistory" unique="true">
+            <column ascending="true" name="MigrationId"/>
+         </index>
+      </table>
+      <table name="BUS_NOTIFICATION" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;BUS_NOTIFICATION_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="BUS_NOTIFICATION_ID" foreignKey="FK_USER_NOTIFICATIONS_BUS_NOTIFICATION_BUS_NOTIFICATION_ID" implied="false" onDeleteCascade="false" schema="public" table="USER_NOTIFICATIONS"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="SCHOOL_BUS_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_BUS_NOTIFICATION_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_BUS_NOTIFICATION" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_BUS_NOTIFICATION_SCHOOL_BUS_ID" unique="false">
+            <column ascending="true" name="SCHOOL_BUS_ID"/>
+         </index>
+      </table>
+      <table name="CCWDATA" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;CCWDATA_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="CCWDATA_ID" foreignKey="FK_SCHOOL_BUS_CCWDATA_CCWDATA_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_CCWDATA" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="CHANGE_HISTORY" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;CHANGE_HISTORY_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="SCHOOL_BUS_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_CHANGE_HISTORY_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_CHANGE_HISTORY" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_CHANGE_HISTORY_SCHOOL_BUS_ID" unique="false">
+            <column ascending="true" name="SCHOOL_BUS_ID"/>
+         </index>
+      </table>
+      <table name="CITY" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;CITY_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="CITY_ID" foreignKey="FK_OWNER_CITY_CITY_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="REGION_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_CITY_REGION_REGION_ID" implied="false" onDeleteCascade="false" schema="public" table="REGION"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_CITY" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_CITY_REGION_ID" unique="false">
+            <column ascending="true" name="REGION_ID"/>
+         </index>
+      </table>
+      <table name="FAVORITE_CONTEXT_TYPE" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;FAVORITE_CONTEXT_TYPE_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="NAME" nullable="true" remarks="Context Name" size="2147483647" type="text"/>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_FAVORITE_CONTEXT_TYPE" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="INSPECTION" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;INSPECTION_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="INSPECTOR_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_INSPECTION_USER_INSPECTOR_ID" implied="false" onDeleteCascade="false" schema="public" table="USER"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="SCHOOL_BUS_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_INSPECTION_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_INSPECTION" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_INSPECTION_INSPECTOR_ID" unique="false">
+            <column ascending="true" name="INSPECTOR_ID"/>
+         </index>
+         <index name="IX_INSPECTION_SCHOOL_BUS_ID" unique="false">
+            <column ascending="true" name="SCHOOL_BUS_ID"/>
+         </index>
+      </table>
+      <table name="LOCAL_AREA" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;LOCAL_AREA_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="LOCAL_AREA_ID" foreignKey="FK_SCHOOL_DISTRICT_LOCAL_AREA_LOCAL_AREA_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_DISTRICT"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="REGION_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_LOCAL_AREA_REGION_REGION_ID" implied="false" onDeleteCascade="false" schema="public" table="REGION"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_LOCAL_AREA" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_LOCAL_AREA_REGION_ID" unique="false">
+            <column ascending="true" name="REGION_ID"/>
+         </index>
+      </table>
+      <table name="OWNER" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="OWNER_ID" foreignKey="FK_OWNER_ATTACHMENTS_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_ATTACHMENTS"/>
+            <child column="OWNER_ID" foreignKey="FK_OWNER_CONTACT_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_CONTACT"/>
+            <child column="OWNER_ID" foreignKey="FK_OWNER_NOTES_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_NOTES"/>
+            <child column="OWNER_ID" foreignKey="FK_SCHOOL_BUS_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="CITY_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_CITY_CITY_ID" implied="false" onDeleteCascade="false" schema="public" table="CITY"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="DIFF" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="FLEET_NUM" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="FLEET_SIZE" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="HAS_BUSES" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="HAS_DUPS" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="LEASE_SIZE" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="MCCODE" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="SCHOOL_DISTRICT_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_SCHOOL_DISTRICT_SCHOOL_DISTRICT_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_DISTRICT"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_CITY_ID" unique="false">
+            <column ascending="true" name="CITY_ID"/>
+         </index>
+         <index name="IX_OWNER_SCHOOL_DISTRICT_ID" unique="false">
+            <column ascending="true" name="SCHOOL_DISTRICT_ID"/>
+         </index>
+      </table>
+      <table name="OWNER_ATTACHMENTS" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_ATTACHMENTS_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="OWNER_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_ATTACHMENTS_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER_ATTACHMENTS" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_ATTACHMENTS_OWNER_ID" unique="false">
+            <column ascending="true" name="OWNER_ID"/>
+         </index>
+      </table>
+      <table name="OWNER_CONTACT" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_CONTACT_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="OWNER_CONTACT_ID" foreignKey="FK_OWNER_CONTACT_ADDRESS_OWNER_CONTACT_OWNER_CONTACT_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_CONTACT_ADDRESS"/>
+            <child column="OWNER_CONTACT_ID" foreignKey="FK_OWNER_CONTACT_PHONE_OWNER_CONTACT_OWNER_CONTACT_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_CONTACT_PHONE"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="OWNER_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_CONTACT_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER_CONTACT" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_CONTACT_OWNER_ID" unique="false">
+            <column ascending="true" name="OWNER_ID"/>
+         </index>
+      </table>
+      <table name="OWNER_CONTACT_ADDRESS" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_CONTACT_ADDRESS_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="OWNER_CONTACT_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_CONTACT_ADDRESS_OWNER_CONTACT_OWNER_CONTACT_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_CONTACT"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER_CONTACT_ADDRESS" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_CONTACT_ADDRESS_OWNER_CONTACT_ID" unique="false">
+            <column ascending="true" name="OWNER_CONTACT_ID"/>
+         </index>
+      </table>
+      <table name="OWNER_CONTACT_PHONE" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_CONTACT_PHONE_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="OWNER_CONTACT_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_CONTACT_PHONE_OWNER_CONTACT_OWNER_CONTACT_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER_CONTACT"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER_CONTACT_PHONE" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_CONTACT_PHONE_OWNER_CONTACT_ID" unique="false">
+            <column ascending="true" name="OWNER_CONTACT_ID"/>
+         </index>
+      </table>
+      <table name="OWNER_NOTES" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;OWNER_NOTES_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="OWNER_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_OWNER_NOTES_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_OWNER_NOTES" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_OWNER_NOTES_OWNER_ID" unique="false">
+            <column ascending="true" name="OWNER_ID"/>
+         </index>
+      </table>
+      <table name="PROVINCE" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;PROVINCE_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="PROVINCE_ID" foreignKey="FK_REGION_PROVINCE_PROVINCE_ID" implied="false" onDeleteCascade="false" schema="public" table="REGION"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_PROVINCE" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="REGION" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;REGION_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="REGION_ID" foreignKey="FK_CITY_REGION_REGION_ID" implied="false" onDeleteCascade="false" schema="public" table="CITY"/>
+            <child column="REGION_ID" foreignKey="FK_LOCAL_AREA_REGION_REGION_ID" implied="false" onDeleteCascade="false" schema="public" table="LOCAL_AREA"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="PROVINCE_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_REGION_PROVINCE_PROVINCE_ID" implied="false" onDeleteCascade="false" schema="public" table="PROVINCE"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_REGION" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_REGION_PROVINCE_ID" unique="false">
+            <column ascending="true" name="PROVINCE_ID"/>
+         </index>
+      </table>
+      <table name="SCHOOL_BUS" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;SCHOOL_BUS_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="SCHOOL_BUS_ID" foreignKey="FK_BUS_NOTIFICATION_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="BUS_NOTIFICATION"/>
+            <child column="SCHOOL_BUS_ID" foreignKey="FK_CHANGE_HISTORY_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="CHANGE_HISTORY"/>
+            <child column="SCHOOL_BUS_ID" foreignKey="FK_INSPECTION_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="INSPECTION"/>
+            <child column="SCHOOL_BUS_ID" foreignKey="FK_SCHOOL_BUS_ATTACHMENT_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS_ATTACHMENT"/>
+            <child column="SCHOOL_BUS_ID" foreignKey="FK_SCHOOL_BUS_NOTE_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS_NOTE"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="CCWDATA_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_SCHOOL_BUS_CCWDATA_CCWDATA_ID" implied="false" onDeleteCascade="false" schema="public" table="CCWDATA"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="CRNO" nullable="true" remarks="CR Number." size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="3" name="LAST_UPDATE" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="LESSEE_NUMBER" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="5" name="LICENSE_EXPIRY_DATE" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="MCCAP" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="MAN_YEAR" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="8" name="NEXT_INSPECTION_DATE" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="OWNER_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_SCHOOL_BUS_OWNER_OWNER_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="10" name="PERMIT_EXPIRY_DATE" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="PLATE" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="12" name="SBCAP" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="13" name="WCCAP" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_SCHOOL_BUS" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_SCHOOL_BUS_CCWDATA_ID" unique="false">
+            <column ascending="true" name="CCWDATA_ID"/>
+         </index>
+         <index name="IX_SCHOOL_BUS_OWNER_ID" unique="false">
+            <column ascending="true" name="OWNER_ID"/>
+         </index>
+      </table>
+      <table name="SCHOOL_BUS_ATTACHMENT" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;SCHOOL_BUS_ATTACHMENT_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="SCHOOL_BUS_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_SCHOOL_BUS_ATTACHMENT_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_SCHOOL_BUS_ATTACHMENT" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_SCHOOL_BUS_ATTACHMENT_SCHOOL_BUS_ID" unique="false">
+            <column ascending="true" name="SCHOOL_BUS_ID"/>
+         </index>
+      </table>
+      <table name="SCHOOL_BUS_NOTE" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;SCHOOL_BUS_NOTE_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="SCHOOL_BUS_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_SCHOOL_BUS_NOTE_SCHOOL_BUS_SCHOOL_BUS_ID" implied="false" onDeleteCascade="false" schema="public" table="SCHOOL_BUS"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_SCHOOL_BUS_NOTE" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_SCHOOL_BUS_NOTE_SCHOOL_BUS_ID" unique="false">
+            <column ascending="true" name="SCHOOL_BUS_ID"/>
+         </index>
+      </table>
+      <table name="SCHOOL_DISTRICT" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;SCHOOL_DISTRICT_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="SCHOOL_DISTRICT_ID" foreignKey="FK_OWNER_SCHOOL_DISTRICT_SCHOOL_DISTRICT_ID" implied="false" onDeleteCascade="false" schema="public" table="OWNER"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="LOCAL_AREA_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_SCHOOL_DISTRICT_LOCAL_AREA_LOCAL_AREA_ID" implied="false" onDeleteCascade="false" schema="public" table="LOCAL_AREA"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_SCHOOL_DISTRICT" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_SCHOOL_DISTRICT_LOCAL_AREA_ID" unique="false">
+            <column ascending="true" name="LOCAL_AREA_ID"/>
+         </index>
+      </table>
+      <table name="USER" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;USER_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial">
+            <child column="INSPECTOR_ID" foreignKey="FK_INSPECTION_USER_INSPECTOR_ID" implied="false" onDeleteCascade="false" schema="public" table="INSPECTION"/>
+            <child column="USER_ID" foreignKey="FK_USER_NOTIFICATIONS_USER_USER_ID" implied="false" onDeleteCascade="false" schema="public" table="USER_NOTIFICATIONS"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="EMAIL" nullable="true" remarks="Email address" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="GIVEN_NAME" nullable="true" remarks="Last Name" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="SM_USER_ID" nullable="true" remarks="Security Manager User ID" size="2147483647" type="text"/>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_USER" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="USER_FAVORITE" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;USER_FAVORITE_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="JSON_DATA" nullable="true" remarks="Saved search" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="NAME" nullable="true" remarks="Context Name" size="2147483647" type="text"/>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_USER_FAVORITE" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+      </table>
+      <table name="USER_NOTIFICATIONS" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;USER_NOTIFICATIONS_ID_seq&quot;'::regclass)" digits="0" id="0" name="ID" nullable="false" remarks="Primary Key" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="BUS_NOTIFICATION_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_USER_NOTIFICATIONS_BUS_NOTIFICATION_BUS_NOTIFICATION_ID" implied="false" onDeleteCascade="false" schema="public" table="BUS_NOTIFICATION"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="USER_ID" nullable="true" remarks="" size="10" type="int4">
+            <parent column="ID" foreignKey="FK_USER_NOTIFICATIONS_USER_USER_ID" implied="false" onDeleteCascade="false" schema="public" table="USER"/>
+         </column>
+         <primaryKey column="ID" sequenceNumberInPK="1"/>
+         <index name="PK_USER_NOTIFICATIONS" unique="true">
+            <column ascending="true" name="ID"/>
+         </index>
+         <index name="IX_USER_NOTIFICATIONS_BUS_NOTIFICATION_ID" unique="false">
+            <column ascending="true" name="BUS_NOTIFICATION_ID"/>
+         </index>
+         <index name="IX_USER_NOTIFICATIONS_USER_ID" unique="false">
+            <column ascending="true" name="USER_ID"/>
+         </index>
+      </table>
+   </tables>
+</database>
